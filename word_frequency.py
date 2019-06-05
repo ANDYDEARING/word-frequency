@@ -37,10 +37,15 @@ def print_word_freq(file):
             else:
                 word_freq[word] += 1
     
-    # Sorts the dictionary by word frequency and takes the top ten words
+    # Sorts alphabetically first to match spec and converts them to a list of tuples
+    def get_word(word_tup):
+        return word_tup[0]
+    word_freq_tuples = sorted(word_freq.items(), key=get_word)
+
+    # Sorts the list of tuples by word frequency and takes the top ten words
     def get_frequency_value(word_tup):
         return word_tup[1]
-    top_ten = sorted(word_freq.items(), key=get_frequency_value, reverse=True)[:10]
+    top_ten = sorted(word_freq_tuples, key=get_frequency_value, reverse=True)[:10]
     print(top_ten)
 
     # Prints the results in the "bar graph" format
