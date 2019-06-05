@@ -7,7 +7,15 @@ STOP_WORDS = [
 
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
-    pass
+    
+    # Reads in the file
+    with open(file) as source_file:
+        
+    # Calculates the frequency
+
+    # Sorts the dictionary by word frequency
+
+    # Prints the results in the "bar graph" format
 
 
 if __name__ == "__main__":
