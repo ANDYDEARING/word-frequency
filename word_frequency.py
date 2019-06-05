@@ -8,10 +8,10 @@ STOP_WORDS = [
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
     
-    # Reads in the file
+    # Reads in the file while building a dictionary 
+    # that calculates frequency
     with open(file) as source_file:
-        
-    # Calculates the frequency
+        print((source_file.readline()))
 
     # Sorts the dictionary by word frequency
 
