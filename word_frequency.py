@@ -46,7 +46,6 @@ def print_word_freq(file):
     def get_frequency_value(word_tup):
         return word_tup[1]
     top_ten = sorted(word_freq_tuples, key=get_frequency_value, reverse=True)[:10]
-    print(top_ten)
 
     # Prints the results in the "bar graph" format
     # find the longest word
@@ -54,8 +53,17 @@ def print_word_freq(file):
     for word_tuple in top_ten:
         if len(word_tuple[0]) > longest_word_length:
             longest_word_length = len(word_tuple[0])
-    print(longest_word_length)
 
+    # find the length of the string of the longest number
+    longest_number_length = len(str(top_ten[0][1]))
+
+    # print each line formatted with * for each use
+    for final_tup in top_ten:
+        full_line = ""
+        full_line += (" " * (longest_word_length - len(final_tup[0]))) + final_tup[0]
+        full_line += " | " + str(final_tup[1]) 
+        full_line += (" " * (1 + longest_number_length - len(str(final_tup[1])))) + ("*" * final_tup[1])
+        print(full_line)
 
 
 if __name__ == "__main__":
