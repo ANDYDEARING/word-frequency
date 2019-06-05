@@ -15,11 +15,13 @@ def print_word_freq(file):
     # clean the string for just letters and spaces and check for \n
     clean_text = ""
     alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
-    # bug patch: these can make a double spaces so I'll have to clean this later
+    # bug patch: these can make double spaces so I'll have to clean this later
     source_str = source_str.replace("\n", " ")
     source_str = source_str.replace("-", " ")
+    # AREA FOR IMPROVEMENT: I would like this to be able to replace any non-alpha
+    #  character with a space
 
-    
+    # add only letters and spaces to clean_text
     for character in source_str:
         if character.lower() in alphabet_and_space:
             clean_text += character.lower()
@@ -39,16 +41,18 @@ def print_word_freq(file):
     
     # Sorts alphabetically first to match spec and converts them to a list of tuples
     def get_word(word_tup):
+        """Given a tuple, returns the first value"""
         return word_tup[0]
     word_freq_tuples = sorted(word_freq.items(), key=get_word)
 
     # Sorts the list of tuples by word frequency and takes the top ten words
     def get_frequency_value(word_tup):
+        """Given a tuple, returns the second value"""
         return word_tup[1]
     top_ten = sorted(word_freq_tuples, key=get_frequency_value, reverse=True)[:10]
 
     # Prints the results in the "bar graph" format
-    # find the longest word
+    # find the length of the longest word
     longest_word_length = 0
     for word_tuple in top_ten:
         if len(word_tuple[0]) > longest_word_length:
@@ -58,11 +62,21 @@ def print_word_freq(file):
     longest_number_length = len(str(top_ten[0][1]))
 
     # print each line formatted with * for each use
+    # AREA FOR IMPROVEMENT: I would like to be able to do this more 
+    # cleanly with string functions
     for final_tup in top_ten:
+        # empty the string for a new line
         full_line = ""
-        full_line += (" " * (longest_word_length - len(final_tup[0]))) + final_tup[0]
-        full_line += " | " + str(final_tup[1]) 
-        full_line += (" " * (1 + longest_number_length - len(str(final_tup[1])))) + ("*" * final_tup[1])
+        # add space so each word ends at the same place
+        full_line += (" " * (longest_word_length - len(
+            final_tup[0]))) + final_tup[0]
+        # add the word, a pipe, and the frequency
+        full_line += " | " + str(final_tup[1])
+        # add white space so the 'bar' starts at the same place 
+        # and make the bar with an '*' for each time it was used
+        full_line += (" " * (1 + longest_number_length - len(
+            str(final_tup[1])))) + ("*" * final_tup[1])
+        # print the fully formed line
         print(full_line)
 
 
