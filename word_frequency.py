@@ -11,13 +11,18 @@ def print_word_freq(file):
     # Reads in the file while building a dictionary 
     with open(file) as source_file:
         source_str = str((source_file.readline()))
+
     # clean the string for just letters and spaces
     clean_text = ""
     alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
     for character in source_str:
         if character.lower() in alphabet_and_space:
             clean_text += character.lower()
-    print(clean_text)
+    
+    # Make a list of the words
+    word_list = clean_text.split(" ")
+    print(word_list)
+
     # Sorts the dictionary by word frequency
 
     # Prints the results in the "bar graph" format
