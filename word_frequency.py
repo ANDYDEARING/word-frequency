@@ -15,7 +15,7 @@ def print_word_freq(file):
     # clean the string for just letters and spaces and check for \n
     clean_text = ""
     alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
-    source_str = source_str.replace("\n", " ")
+    source_str = source_str.replace("\n", "")
     
     for character in source_str:
         if character.lower() in alphabet_and_space:
@@ -32,14 +32,15 @@ def print_word_freq(file):
                 word_freq[word] = 1
             else:
                 word_freq[word] = word_freq[word] + 1
-    print(f"her {word_freq['her']}")
-    print(f"which {word_freq['which']}")
-    print(f"she {word_freq['she']}")
-
-
-
+    
     # Sorts the dictionary by word frequency
 
+    def get_frequency_value(word_tup):
+        return word_tup[1]
+
+    top_ten = sorted(word_freq.items(), key=get_frequency_value, reverse=True)[:10]
+
+    print(top_ten)
     # Prints the results in the "bar graph" format
 
 
