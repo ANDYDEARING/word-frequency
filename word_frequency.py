@@ -10,18 +10,20 @@ def print_word_freq(file):
     
     # Reads in the file while building a dictionary
     with open(file) as source_file:
-        source_str = str((source_file.readline()))
+        source_str = source_file.read()
 
-    # clean the string for just letters and spaces
+    # clean the string for just letters and spaces and check for \n
     clean_text = ""
     alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
+    source_str = source_str.replace("\n", " ")
+    
     for character in source_str:
         if character.lower() in alphabet_and_space:
             clean_text += character.lower()
     
     # Make a list of the words
     word_list = clean_text.split(" ")
-    
+
     # Go through the word list and count the "right" words in a dictionary
     word_freq = {}
     for word in word_list:
@@ -30,7 +32,11 @@ def print_word_freq(file):
                 word_freq[word] = 1
             else:
                 word_freq[word] = word_freq[word] + 1
-    print(word_freq)
+    print(f"her {word_freq['her']}")
+    print(f"which {word_freq['which']}")
+    print(f"she {word_freq['she']}")
+
+
 
     # Sorts the dictionary by word frequency
 
