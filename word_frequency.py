@@ -15,8 +15,10 @@ def print_word_freq(file):
     # clean the string for just letters and spaces and check for \n
     clean_text = ""
     alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
-    # for some of the words, \n is the space, so I'll have to clean this later
+    # bug patch: these can make a double spaces so I'll have to clean this later
     source_str = source_str.replace("\n", " ")
+    source_str = source_str.replace("-", " ")
+
     
     for character in source_str:
         if character.lower() in alphabet_and_space:
@@ -25,10 +27,10 @@ def print_word_freq(file):
     # Make a list of the words
     word_list = clean_text.split(" ")
 
-    # Go through the word list and count the "right" words in a dictionary
+    # Go through the word list and count the "go" words in a dictionary
     word_freq = {}
     for word in word_list:
-        # here's the clean from above to handle empty string words
+        # here's the cleaner from above to handle empty string words
         if (not word in STOP_WORDS) and (word != ""):
             if word_freq.get(word) == None:
                 word_freq[word] = 1
@@ -40,7 +42,15 @@ def print_word_freq(file):
         return word_tup[1]
     top_ten = sorted(word_freq.items(), key=get_frequency_value, reverse=True)[:10]
     print(top_ten)
+
     # Prints the results in the "bar graph" format
+    # find the longest word
+    longest_word_length = 0
+    for word_tuple in top_ten:
+        if len(word_tuple[0]) > longest_word_length:
+            longest_word_length = len(word_tuple[0])
+    print(longest_word_length)
+
 
 
 if __name__ == "__main__":
