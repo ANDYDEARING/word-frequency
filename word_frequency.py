@@ -8,7 +8,7 @@ STOP_WORDS = [
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
     
-    # Reads in the file while building a dictionary 
+    # Reads in the file while building a dictionary
     with open(file) as source_file:
         source_str = str((source_file.readline()))
 
@@ -21,7 +21,16 @@ def print_word_freq(file):
     
     # Make a list of the words
     word_list = clean_text.split(" ")
-    print(word_list)
+    
+    # Go through the word list and count the "right" words in a dictionary
+    word_freq = {}
+    for word in word_list:
+        if not word in STOP_WORDS:
+            if word_freq.get(word) == None:
+                word_freq[word] = 1
+            else:
+                word_freq[word] = word_freq[word] + 1
+    print(word_freq)
 
     # Sorts the dictionary by word frequency
 
