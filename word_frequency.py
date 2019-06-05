@@ -9,10 +9,15 @@ def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
     
     # Reads in the file while building a dictionary 
-    # that calculates frequency
     with open(file) as source_file:
-        print((source_file.readline()))
-
+        source_str = str((source_file.readline()))
+    # clean the string for just letters and spaces
+    clean_text = ""
+    alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
+    for character in source_str:
+        if character.lower() in alphabet_and_space:
+            clean_text += character.lower()
+    print(clean_text)
     # Sorts the dictionary by word frequency
 
     # Prints the results in the "bar graph" format
