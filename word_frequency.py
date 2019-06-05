@@ -15,7 +15,8 @@ def print_word_freq(file):
     # clean the string for just letters and spaces and check for \n
     clean_text = ""
     alphabet_and_space = "abcdefghijklmnopqrstuvwxyz "
-    source_str = source_str.replace("\n", "")
+    # for some of the words, \n is the space, so I'll have to clean this later
+    source_str = source_str.replace("\n", " ")
     
     for character in source_str:
         if character.lower() in alphabet_and_space:
@@ -27,19 +28,17 @@ def print_word_freq(file):
     # Go through the word list and count the "right" words in a dictionary
     word_freq = {}
     for word in word_list:
-        if not word in STOP_WORDS:
+        # here's the clean from above to handle empty string words
+        if (not word in STOP_WORDS) and (word != ""):
             if word_freq.get(word) == None:
                 word_freq[word] = 1
             else:
-                word_freq[word] = word_freq[word] + 1
+                word_freq[word] += 1
     
-    # Sorts the dictionary by word frequency
-
+    # Sorts the dictionary by word frequency and takes the top ten words
     def get_frequency_value(word_tup):
         return word_tup[1]
-
     top_ten = sorted(word_freq.items(), key=get_frequency_value, reverse=True)[:10]
-
     print(top_ten)
     # Prints the results in the "bar graph" format
 
