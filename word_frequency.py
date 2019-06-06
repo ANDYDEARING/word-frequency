@@ -64,21 +64,29 @@ def print_word_freq(file):
     # print each line formatted with * for each use
     # AREA FOR IMPROVEMENT: I would like to be able to do this more 
     # cleanly with string functions
+    # for final_tup in top_ten:
+    #     # empty the string for a new line
+    #     full_line = ""
+    #     # add space so each word ends at the same place
+    #     full_line += (" " * (longest_word_length - len(
+    #         final_tup[0]))) + final_tup[0]
+    #     # add the word, a pipe, and the frequency
+    #     full_line += " | " + str(final_tup[1])
+    #     # add white space so the 'bar' starts at the same place 
+    #     # and make the bar with an '*' for each time it was used
+    #     full_line += (" " * (1 + longest_number_length - len(
+    #         str(final_tup[1])))) + ("*" * final_tup[1])
+    #     # print the fully formed line
+    #     print(full_line)
+    
+    # IMPROVED VERSION
+    word_padding = longest_word_length + 1
+    bar_padding = len(str(top_ten[0][1])) + 1
     for final_tup in top_ten:
-        # empty the string for a new line
         full_line = ""
-        # add space so each word ends at the same place
-        full_line += (" " * (longest_word_length - len(
-            final_tup[0]))) + final_tup[0]
-        # add the word, a pipe, and the frequency
-        full_line += " | " + str(final_tup[1])
-        # add white space so the 'bar' starts at the same place 
-        # and make the bar with an '*' for each time it was used
-        full_line += (" " * (1 + longest_number_length - len(
-            str(final_tup[1])))) + ("*" * final_tup[1])
-        # print the fully formed line
+        full_line = ("{:>"+str(word_padding)+"}").format(
+            final_tup[0]) + " | " + ("{:<"+str(bar_padding)+"}").format(final_tup[1]) + " " + ("*"*final_tup[1])
         print(full_line)
-
 
 if __name__ == "__main__":
     import argparse
