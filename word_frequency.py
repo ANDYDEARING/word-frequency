@@ -80,12 +80,20 @@ def print_word_freq(file):
     #     print(full_line)
     
     # IMPROVED VERSION
+    # add 1 'space' before each element of the full_line
     word_padding = longest_word_length + 1
     bar_padding = len(str(top_ten[0][1])) + 1
+
     for final_tup in top_ten:
+        # empty the full line string
         full_line = ""
+        # right align the name starting 1 'space' bigger than the longest word
         full_line = ("{:>"+str(word_padding)+"}").format(
-            final_tup[0]) + " | " + ("{:<"+str(bar_padding)+"}").format(final_tup[1]) + " " + ("*"*final_tup[1])
+        # start bars at one 'space' past the length of the longest number and
+        # left align the number part
+            final_tup[0]) + " | " + ("{:<"+str(bar_padding)+"}").format(
+                final_tup[1]) + ("*"*final_tup[1])
+        # print the full line
         print(full_line)
 
 if __name__ == "__main__":
